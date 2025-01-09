@@ -1,40 +1,45 @@
-Rick and Morty Character Listing App
+# Rick and Morty Character Listing App
 
 This application fetches and displays a list of Rick and Morty characters using Apollo Client and the Rick and Morty GraphQL API. Users can explore characters with various features like filtering, sorting, and infinite scrolling. A language switcher in the footer allows toggling between languages for an improved user experience.
 
-Features
+## Features
 
-  1.Character Details: Name, Status, Species, Gender, and Origin.
-  2.Filters: Filter by Status and Species.
-  3.Sorting: Sort by Name and Origin.
-  4.Infinite Scrolling: Load characters dynamically as you scroll.
-  5.Language Support: Toggle between English and German in the footer.
-  6.Error Handling: Graceful messages for errors and loading states.
-  7.Responsive UI: Styled with CSS and Bootstrap.
+- **Character Details**: Displays Name, Status, Species, Gender, and Origin.
+- **Filters**: Filter characters by Status and Species.
+- **Sorting**: Sort characters by Name and Origin.
+- **Infinite Scrolling**: Load more characters dynamically as you scroll.
+- **Language Support**: Toggle between English and German in the footer.
+- **Error Handling**: Gracefully display error and loading states.
+- **Responsive UI**: Styled with CSS and Bootstrap to be mobile-friendly.
 
-Technologies
+## Technologies
 
-  1.Frontend: ReactJS
-  2.GraphQL: Apollo Client
-  3.API: Rick and Morty GraphQL API
-  4.Styling: CSS and Bootstrap
-  5.Localization: react-i18next
+- **Frontend**: ReactJS
+- **GraphQL**: Apollo Client
+- **API**: Rick and Morty GraphQL API
+- **Styling**: CSS and Bootstrap
+- **Localization**: `react-i18next` for language support
 
-Setup
+## Setup
 
-1.Clone the Repository:
-  git clone <repository-url>
-  cd <repository-folder>
-  
-2.Install Dependencies:
-  npm install
+Follow these steps to get the app running locally:
 
-3.Start the App:
-  npm start
-Open http://localhost:3000 in your browser.
+1. **Clone the Repository**:
+   git clone <repository-url>
+   cd <repository-folder>
 
-How It Works
-Apollo Client: Fetches character data with filtering and pagination.
-Infinite Scrolling: Automatically loads more characters on scroll.
-Filters/Sorting: Dynamic filtering by status/species and sorting by name/origin.
-Language Switcher: Switches field labels and text between English and German using react-i18next.
+2. **Install Dependencies**:
+   npm install
+
+2. **Start the App**:
+    npm start
+    Open http://localhost:3000 in your browser.
+
+
+## How It Works
+
+- **Apollo Client**: Fetches character data with filtering and pagination.
+- **Infinite Scrolling**: Automatically loads more characters as you scroll.
+- **Filters/Sorting**: Dynamic filtering by status/species and sorting by name/origin.
+- **Language Switcher**: Switches field labels and text between English and German using `react-i18next`.
+
