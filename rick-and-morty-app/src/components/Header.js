@@ -1,7 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import headerImage from '../images/header_img.webp';
 
 const Header = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="header py-4">
       <div className="d-flex align-items-center gap-5 container-fluid">
@@ -13,7 +16,7 @@ const Header = () => {
           />
         </div>
         <div className="header-text flex-grow-1">
-          <h1 className="header-title text-white">List of Rick and Morty Characters</h1>
+          <h1 className="header-title text-white">{t('headerTitle')}</h1>
         </div>
       </div>
     </div>

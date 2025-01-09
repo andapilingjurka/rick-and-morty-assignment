@@ -15,7 +15,6 @@ body {
     object-fit: cover; 
     margin-bottom: -80px; 
     border-radius: 15px;
-    
 }
 
 .header-title {
@@ -49,6 +48,11 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 10px; 
+    transition: transform 0.3s ease;
+  }
+
+  .character-image:hover {
+    transform: scale(1.1); 
   }
 
   .card-body {
@@ -68,5 +72,15 @@ body {
     color: rgb(87, 84, 84);
   }
   
+  .footer {
+    background-color:#183877;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+  }
   
+  .footer .btn {
+    min-width: 100px;
+  }
   

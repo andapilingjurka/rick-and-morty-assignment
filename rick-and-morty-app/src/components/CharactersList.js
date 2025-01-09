@@ -3,13 +3,17 @@ import { useQuery } from '@apollo/client';
 import GET_CHARACTERS from '../queries/getCharacters';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from './Header';
+import Footer from './Footer'; 
+import { useTranslation } from 'react-i18next';
 
 const CharacterList = () => {
+  const { t, i18n } = useTranslation(); 
   const [filterStatus, setFilterStatus] = useState('');
   const [filterSpecies, setFilterSpecies] = useState('');
   const [sortKey, setSortKey] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+
   const { data, loading, error, fetchMore } = useQuery(GET_CHARACTERS, {
     variables: { page: 1, status: filterStatus, species: filterSpecies },
   });
@@ -62,8 +66,8 @@ const CharacterList = () => {
     }
   }, [data, filterStatus, filterSpecies, sortKey]);
 
-  if (loading && !filteredData.length) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading && !filteredData.length) return <p>{t('loading')}</p>;
+  if (error) return <p>{t('error')}: {error.message}</p>;
 
   return (
     <div>
@@ -72,60 +76,58 @@ const CharacterList = () => {
         <div className="filters mb-4 d-flex justify-content-end">
           <div className="d-flex gap-4">
             <div>
-              <label>Filter by Status:</label>
+              <label>{t('filterByStatus')}</label>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
                 className="form-select"
               >
-                <option value="">All</option>
-                <option value="Alive">Alive</option>
-                <option value="Dead">Dead</option>
-                <option value="unknown">Unknown</option>
+                <option value="">{t('all')}</option>
+                <option value="Alive">{t('alive')}</option>
+                <option value="Dead">{t('dead')}</option>
+                <option value="unknown">{t('unknown')}</option>
               </select>
             </div>
 
             <div>
-              <label>Filter by Species:</label>
+              <label>{t('filterBySpecies')}</label>
               <select
                 value={filterSpecies}
                 onChange={(e) => setFilterSpecies(e.target.value)}
                 className="form-select"
               >
-                <option value="">All</option>
-                <option value="Human">Human</option>
-                <option value="Alien">Alien</option>
+                <option value="">{t('all')}</option>
+                <option value="Human">{t('human')}</option>
+                <option value="Alien">{t('alien')}</option>
               </select>
             </div>
 
             <div>
-              <label>Sort by:</label>
+              <label>{t('sortBy')}</label>
               <select
                 value={sortKey}
                 onChange={(e) => setSortKey(e.target.value)}
                 className="form-select"
               >
-                <option value="">None</option>
-                <option value="name">Name</option>
-                <option value="origin">Origin</option>
+                <option value="">{t('none')}</option>
+                <option value="name">{t('name')}</option>
+                <option value="origin">{t('origin')}</option>
               </select>
             </div>
           </div>
         </div>
 
         <InfiniteScroll
-            dataLength={filteredData.length}
-            next={loadMoreData}
-            hasMore={hasMore}
-            loader={
-              <div className="d-flex justify-content-center align-items-center" style={{ height: '100px' }}>
-                <h4>Loading...</h4>
-              </div>
-            }
-            scrollableTarget="scrollableDiv"
-            scrollThreshold={1}
-          >
-          <div className="row mt-2">
+          dataLength={filteredData.length}
+          next={loadMoreData}
+          hasMore={hasMore}
+          loader={
+            <div className="d-flex justify-content-center align-items-center" style={{ height: '100px' }}>
+              <h4>{t('loading')}</h4>
+            </div>
+          }
+        >
+          <div className="row mt-1 g-4">
             {filteredData.map((character) => (
               <div className="col-md-4 mb-4" key={character.id}>
                 <div className="character-card">
@@ -136,10 +138,10 @@ const CharacterList = () => {
                   />
                   <div className="card-body-text">
                     <h5 className="card-name">{character.name}</h5>
-                    <p><b>Status:</b> {character.status}</p>
-                    <p><b>Species:</b> {character.species}</p>
-                    <p><b>Gender:</b> {character.gender}</p>
-                    <p><b>Origin:</b> {character.origin.name}</p>
+                    <p><b>{t('status')}:</b> {character.status}</p>
+                    <p><b>{t('species')}:</b> {character.species}</p>
+                    <p><b>{t('gender')}:</b> {character.gender}</p>
+                    <p><b>{t('origin')}:</b> {character.origin.name}</p>
                   </div>
                 </div>
               </div>
@@ -147,8 +149,10 @@ const CharacterList = () => {
           </div>
         </InfiniteScroll>
 
-        {!hasMore && <h5 className='d-flex justify-content-center align-items-center m-2 ' style={{ height: '100px' }}>No more characters to display.</h5>}
+        {!hasMore && <h5 className="d-flex justify-content-center align-items-center m-2">{t('noMoreCharacters')}</h5>}
       </div>
+      
+      <Footer setLanguage={i18n.changeLanguage} /> 
     </div>
   );
 };
